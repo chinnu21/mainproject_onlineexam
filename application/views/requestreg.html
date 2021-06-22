@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+ <div align="center">
+  {% if session["role"]=="ADMIN" %}
+ <a href="{{url_for('newexam')}}" > New Exam</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('course') }}">Course</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('subject') }}">Subject</a>
+ {%endif%}
+ </div>
+ <br/><br/>
+  
+  <table width="100%">
+  <tr>
+  <th>ID#</th>
+  <th>Title</th>
+  <th>Exam date</th>
+<th>Exam Time</th>
+<th>Duration</th>
+<th>No. Questions</th>
+<th>Course</th>
+<th>Subject</th>
+<th>Portion</th>
+<th>Action</th>
+</tr>
+  {%if data %}
+  {% for row in data %} <center>
+
+  <tr>
+  <td>{{row[0]}}</td>
+  <td>{{row[1]}}</td>
+  <td>{{row[2]}}</td>
+  <td>{{row[3]}}</td>
+  <td>{{row[4]}}</td>
+  <td>{{row[8]}}</td>
+  <td>{{row[11]}}</td>
+  <td>{{row[12]}}</td>
+  <td>{{row[6]}}</td>
+  <td>
+  {% if session["role"]=="USER" %}
+  {%if row[7]==1%}
+  <form name="requestreg_action" action="{{url_for("startnow")}}" method="post">
+         <input type="submit" name="submit_btn" value="Start Now"/>
+         <input type="hidden" name="exam" value="{{row[0]}}"/>
+         <input type="hidden" name="subject" value="{{row[5]}}"/>
+         <input type="hidden" name="no_qn" value="{{row[8]}}"/>         
+         <input type="hidden" name="exp_time" value="{{row[9]}}"/>
+         </form>
+      {%endif%}
+         {%endif%}
+       {% if session["role"]=="ADMIN" %}  
+       <a href="{{url_for('examdelete')}}?i={{row[0]}}">Delete</a>
+      {%if row[7]==0%} &nbsp;&nbsp;
+       <a href="{{url_for('examstart')}}?i={{row[0]}}">Start</a>
+       {%endif%}
+       {%if row[7]==1%}
+       &nbsp;&nbsp;
+       <a href="{{url_for('examexpiry')}}?i={{row[0]}}">Expire</a>
+       {%endif%}
+       {%endif%}</td>
+  </tr>
+  {%endfor%}
+  {%else%}
+  <tr><td colspan="8"><p align="center">No Exams Scheduled</p></td></tr>
+  {%endif%}
+  </table>
+               
+
+ 
+
+{% endblock %}

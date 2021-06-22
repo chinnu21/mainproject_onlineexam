@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Online Exam Platform</title>
+<!--
+
+DIGITAL TREND
+
+https://templatemo.com/tm-538-digital-trend
+
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/font-awesome.min.css')}}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/aos.css')}}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css')}}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.theme.default.min.css')}}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-digital-trend.css')}}">
+
+</head>
+<body>
+
+     <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="">
+              <i class="fa fa-line-chart"></i>
+              Online Exam
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{url_for('login')}}" class="smoothScroll">SignIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{url_for('about')}}" class="smoothScroll">ABOUT</a>
+                </li>              
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{url_for('user_reg')}}" class="smoothScroll">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{url_for('contact')}}" class="smoothScroll">CONTACT</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+     <!-- HERO -->
+     <section class="about section-padding pb-0">
+               <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+                      
+               
+                    <form action="{{ url_for('register_action') }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <center> <p>
+                      SignUp
+                    </p>
+  <div style="margin-top:60px; margin-bottom:100px;">
+  <table width="600px" border="0">
+    <tr>
+      <td width="140">First Name</td>
+      <td width="270"><input type="text" name="txtfname" id="txtfname" required="required" pattern="[a-zA-Z._]{3,}" title="First Name Here" autocomplete="off" placeholder="Enter First Name" /></td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td><input type="text" name="txtlname" id="txtlname" required="required" pattern="[a-zA-Z._]{3,}" title="Last Name Here" autocomplete="off" placeholder="Enter Last Name" /></td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><input name="txtaddress" type="text" id="txtaddress" value="" size="45" maxlength="500" required="required" title="Address here" autocomplete="off" /></td>
+    </tr>
+    <tr>
+      <td>Contact</td>
+      <td><input type="tel" name="txtcontact" id="txtcontact" placeholder="1234567890" pattern="[6-9][0-9]{9}"></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="email" name="txtemail" id="txtemail" placeholder="Enter your email..." class="contact-subject form-control" id="contact-subject" required onChange="return gEmail()"   ></td>
+    </tr>
+    <tr>
+      <td>Date Of Birth</td>
+      <td><input type="date" name="txtdob" id="txtdob" autocomplete="off" required="required" max="2004-12-31" /></td>
+    </tr>
+<tr>
+           <td>Gender</td>
+<td><input type="radio" name="gender" id="gender" value="Male" >Male
+<input type="radio" name="gender" id="gender" value="Female">Female
+</td>
+    </tr>
+  <tr>
+      <td>Photo</td>
+      <td><input type="file" name="photo" id="photo" autocomplete="off" required="required"/></td>
+    </tr>
+      <td>User Name</td>
+      <td><input type="text" name="txtusername" id="txtusername" autocomplete="off" required="required" title="User Name here" /></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" name="txtpassword" id="txtpassword" placeholder="Enter your password..." class="contact-message form-control" required onChange="return gPwd()" ></td>
+    </tr>
+    <tr>
+      <td>Confirm Password</td>
+      <td><input type="password" name="rtxtpassword" id="txtpassword" placeholder="Confirm your password..." class="contact-message form-control" required onChange="return gPwd()" ></td>
+    </tr>
+    <tr><center>
+      <td><input type="submit" name="btnsignup" id="btnsave" value="Sign Up" /></td>
+      <td><input type="submit" name="btncancel" id="btncancel" value="Cancel" /></td>
+   
+   </center> </tr>
+  </table>
+        </div>
+    </center>
+      </form> </div>
+
+                        <div class="col-lg-6 col-12">
+                          <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+
+                            <img src="{{ url_for('static', filename='assets/images/working-girl.png')}}" class="img-fluid" alt="working girl">
+                          </div>
+                        </div>
+
+                    </div>
+               </div>
+     </section>
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 mx-lg-auto text-center col-md-8 col-12" data-aos="fade-up" data-aos-delay="400">
+            <p class="copyright-text">Copyright &copy;  Online Exam
+           </p>
+          </div>
+
+          
+
+          
+
+        </div>
+      </div>
+    </footer>
+
+
+     <!-- SCRIPTS -->
+     <script src="{{ url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+     <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js')}}"></script>
+     <script src="{{ url_for('static', filename='assets/js/aos.js')}}"></script>
+     <script src="{{ url_for('static', filename='assets/js/owl.carousel.min.js')}}"></script>
+     <script src="{{ url_for('static', filename='assets/js/smoothscroll.js')}}"></script>
+     <script src="{{ url_for('static', filename='assets/js/custom.js')}}"></script>
+
+</body>
+</html>

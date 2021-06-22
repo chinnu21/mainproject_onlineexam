@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="home">
+	 <center>
+  <form action="{{ url_for('newexam_action') }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <div align="right">
+   {% if session["role"]=="ADMIN" %}
+ <a href="{{url_for('newexam')}}" > New Exam</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('course') }}">Course</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('subject') }}">Subject</a>
+ {%endif%}
+ </div>
+  <div style="margin-top:60px; margin-bottom:100px;">
+  <table width="auto" border="0">
+    <tr>
+      <td width="140">Title</td>
+      <td width="270"><input type="text" name="t1" id="txtfname" required="required" pattern="[a-zA-Z._]{3,}" title="Title" autocomplete="off" placeholder="Enter Title" /></td>
+    </tr>
+  
+    <tr>
+      <td>Exam Date</td>
+      <td><input name="t2" type="date" id="txtaddress" value="" size="45" maxlength="500" required="required" title="Exam date" min="2021-03-26" max="2021-12-31" autocomplete="off" /></td>
+    </tr>
+     <tr>
+      <td>Exam Time</td>
+      <td><input name="t3" type="time" id="txtaddress" value="" size="45" maxlength="500" required="required" title="Exam date" min="2021-03-26" max="2021-12-31" autocomplete="off" /></td>
+    </tr>
+     <tr>
+      <td>Exam Duration</td>
+      <td><input name="t4" type="number" id="txtaddress" value="" size="45" maxlength="500" required="required" title="Exam date" min="2021-03-26" max="2021-12-31" autocomplete="off" /></td>
+    </tr>
+    <tr>
+      <td>Total No of Questions</td>
+      <td><input name="t7" type="number" id="txtaddress" value="" size="45" maxlength="500" required="required" title="Exam date" min="2021-03-26" max="2021-12-31" autocomplete="off" /></td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td><select name="t5">
+	     {% for row in data1 %}
+		 <option value="{{row[0]}}">{{row[1]}}</option>
+		 {%endfor%}
+	  </select></td>
+    </tr>
+       <tr>
+      <td>Exam Portions</td>
+      <td><textarea name="t6" required="required" >
+      </textarea></td>
+    </tr>
+    <tr><center>
+      <td></td>
+      <td>
+      <input type="submit" name="btnsignup" id="btnsave" value="Save" />
+      <input type="submit" name="btncancel" id="btncancel" value="Cancel" />
+      </td>
+   
+   </center> </tr>
+  </table></center>
+</form>
+ </div>
+{% endblock %}

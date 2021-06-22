@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+  <form action="{{ url_for('course_action') }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <center>
+ <div align="right">
+  {% if session["role"]=="ADMIN" %}
+ <a href="{{url_for('newexam')}}" > New Exam</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('course') }}">Course</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('subject') }}">Subject</a>
+ {%endif%}
+ </div>
+  {% if session["role"]=="ADMIN" %}
+  <div style="margin-top:60px; margin-bottom:100px;">
+  <table width="420" border="0" >
+    <tr>
+      <td width="140">Course</td>
+      <td width="270"><input type="text" name="msg" id="txtfname" required="required" title="Course" autocomplete="off" placeholder="Enter Course" /></td>
+    </tr>
+    
+    <tr><center>
+    
+      <td><input type="submit" name="btnsignup" id="btnsave" value="Save" /></td>
+      <td><input type="submit" name="btncancel" id="btncancel" value="Cancel" /></td>
+   
+   </center> </tr>
+  </table>
+</form>
+
+ {% endif %}
+
+ <div style="margin-top:60px; margin-bottom:100px;">
+  <strong>Course List</strong>
+  <table width="600px" border="1" id="customers">
+  <tr style="background-color: grey">
+  <th>ID#</th>
+  <th>Course </th>
+  <th>Action</th>
+  
+
+  </tr>
+    {% for row in data %}
+    <tr>
+<td>{{ row[0] }}</td>
+<td>
+{{row[1]}}
+</td>
+     <td><a href="{{url_for('coursedelete')}}?i={{row[0]}}">Delete</a></td>
+    
+    </tr>
+    {% endfor %}
+  </table></center>
+
+ </div>
+ 
+
+{% endblock %}

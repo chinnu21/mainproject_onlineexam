@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <div class="home">
+  <form action="{{ url_for('subject_action') }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <center>
+  <div align="right">
+   {% if session["role"]=="ADMIN" %}
+ <a href="{{url_for('newexam')}}" > New Exam</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('course') }}">Course</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{{ url_for('subject') }}">Subject</a>
+ {%endif%}
+ </div>
+  {% if session["role"]=="ADMIN" %}
+  <div style="margin-top:60px; margin-bottom:100px;">
+  <table width="420" border="0">
+    <tr>
+      <td width="140">Subject</td>
+      <td width="270"><input type="text" name="msg" id="txtfname" required="required" title="Subject" autocomplete="off" placeholder="Enter Subject" /></td>
+    </tr>
+    <tr>
+    <td>Course</td>
+    <td>
+    <select name="msgs">
+  {% for row in data1 %}
+		 <option value="{{row[0]}}">{{row[1]}}</option>
+		 {%endfor%}
+    </select>
+    </td>
+    </tr>
+    <tr><center>
+    
+      <td><input type="submit" name="btnsignup" id="btnsave" value="Save" /></td>
+      <td><input type="submit" name="btncancel" id="btncancel" value="Cancel" /></td>
+   
+   </center> </tr>
+  </table>
+</form>
+ </div>
+ {% endif %}
+
+ <div style="margin-top:60px; margin-bottom:100px;">
+  <strong>Subject List</strong>
+  <table width="600px" border="0">
+  <tr>
+  <th>ID#</th>
+  <th>Subject </th>
+  <th>Course</th>
+  <th>Action</th>
+  
+
+  </tr>
+    {% for row in data %}
+    <tr>
+<td>{{ row[0] }}</td>
+<td>
+{{row[1]}}
+</td>
+<td>
+{{row[3]}}
+</td>
+     <td><a href="{{url_for('subjectdelete')}}?i={{row[0]}}">Delete</a></td>
+    
+    </tr>
+    {% endfor %}
+  </table></center>
+
+ </div>
+ 
+
+{% endblock %}
